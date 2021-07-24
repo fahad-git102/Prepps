@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.colleges.StudentsSearchFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="17dp"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ss"
+            android:gravity="center_vertical"
+            android:background="@drawable/edittext_background"
+            android:orientation="horizontal">
+
+            <SearchView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="55dp"
+                android:layout_marginEnd="8dp"
+                android:id="@+id/searchView"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_filter"
+                android:layout_marginRight="8dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:padding="3dp"
+                android:id="@+id/btnFilter"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/v"
+            android:background="@color/colorDarkGrey"
+            android:layout_below="@id/ss"
+            android:layout_marginTop="15dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/v"
+            tools:listitem="@layout/students_items"
+            android:id="@+id/recyceler_students"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Data to Show !"
+            android:textSize="16sp"
+            android:textColor="@color/colorDarkGrey"
+            android:layout_centerInParent="true"
+            android:id="@+id/noData"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:background="@color/colorLightFaded">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/colorBlue"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

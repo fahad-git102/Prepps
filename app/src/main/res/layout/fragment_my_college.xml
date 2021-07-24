@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".fragments.students.MyCollegeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/rel_header"
+            android:layout_height="185dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/cover"
+                android:scaleType="centerCrop"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorDarkFaded"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Colleges"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="35dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="20dp"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/top_rounded_rectangle"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Search College"
+                android:paddingLeft="13dp"
+                android:textSize="14sp"
+                android:paddingRight="13dp"
+                android:background="@drawable/edittext_background"
+                android:id="@+id/searchView"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/view"
+                android:layout_below="@id/searchView"
+                android:background="@color/colorDarkGrey"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/college_item"
+                android:layout_below="@id/view"
+                android:id="@+id/recycler_college"
+                android:layout_marginTop="16dp" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

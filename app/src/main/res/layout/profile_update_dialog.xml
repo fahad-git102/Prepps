@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@color/colorBlue"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Update Profile"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="17sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GPA"
+            android:textSize="11sp"
+            android:textColor="@color/colorBlue"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:textSize="14sp"
+            android:inputType="numberDecimal"
+            android:padding="13dp"
+            android:id="@+id/etGPA"
+            android:hint="Gpa"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hobbies"
+            android:textSize="11sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorBlue"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:textSize="14sp"
+            android:padding="13dp"
+            android:id="@+id/etHobbies"
+            android:hint="Hobbies"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Extra-curricular Activities"
+            android:textSize="11sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorBlue"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:textSize="14sp"
+            android:padding="13dp"
+            android:id="@+id/etActivities"
+            android:hint="Extra-curricular Activities"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Careers Interested"
+            android:textSize="11sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorBlue"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="45dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/edittext_background"
+            android:textSize="14sp"
+            android:padding="13dp"
+            android:id="@+id/etCareersInterested"
+            android:hint="Careers Interested"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="25dp"
+            android:text="Save"
+            android:id="@+id/btnSave"/>
+
+    </LinearLayout>
+
+</LinearLayout>

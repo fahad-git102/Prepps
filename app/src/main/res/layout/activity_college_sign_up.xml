@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginActivity">
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="25dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        android:tint="@color/colorBlue"
+        android:id="@+id/goBack"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="College"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/colorDarkGrey"
+        android:id="@+id/mainheading"
+        android:textSize="24sp"
+        android:fontFamily="@font/cera_pro_medium"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Enter your Info"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorDarkGrey"
+        android:id="@+id/heading"
+        android:layout_below="@id/mainheading"
+        android:textSize="21sp"
+        android:fontFamily="@font/cera_pro_medium"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Required)"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorDarkGrey"
+        android:layout_marginTop="4dp"
+        android:id="@+id/type"
+        android:layout_below="@id/heading"
+        android:textSize="13sp"
+        android:fontFamily="@font/cera_pro_light"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/type"
+        android:layout_marginTop="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/required"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="textEmailAddress"
+                android:padding="13dp"
+                android:id="@+id/etName"
+                android:hint="Name"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginTop="15dp"
+                android:inputType="textEmailAddress"
+                android:padding="13dp"
+                android:id="@+id/etEmail"
+                android:hint="Email"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:inputType="textPassword"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginTop="15dp"
+                android:padding="13dp"
+                android:id="@+id/etPassword"
+                android:hint="Password"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginTop="15dp"
+                android:padding="13dp"
+                android:id="@+id/etLocation"
+                android:hint="Location"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edittext_background"
+                android:layout_marginTop="15dp"
+                android:padding="13dp"
+                android:minHeight="100dp"
+                android:gravity="start"
+                android:id="@+id/etAboutUs"
+                android:hint="About Us"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:textColor="@color/colorBlue"
+                android:text="Note: Your contact info will be kept confidential."
+                android:textSize="12sp"
+                android:layout_marginTop="15dp"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:layout_below="@id/type"
+        android:visibility="gone"
+        android:id="@+id/optional"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edittext_background"
+            android:inputType="number"
+            android:padding="13dp"
+            android:id="@+id/etAwards"
+            android:hint="Awards"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="15dp"
+            android:padding="13dp"
+            android:id="@+id/etAccreditation"
+            android:hint="Accreditation"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="15dp"
+            android:padding="13dp"
+            android:id="@+id/etRankings"
+            android:hint="Rankings"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="NEXT"
+        android:textColor="@color/colorBlue"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/btnNext"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:textSize="22dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SAVE"
+        android:textColor="@color/colorBlue"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:id="@+id/btnSave"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:textSize="22dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SKIP"
+        android:textColor="@color/colorGreen"
+        android:visibility="gone"
+        android:id="@+id/btnSkip"
+        android:layout_toLeftOf="@id/btnSave"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:textSize="22dp"/>
+
+
+</RelativeLayout>

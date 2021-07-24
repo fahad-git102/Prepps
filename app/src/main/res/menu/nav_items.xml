@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"/>
+    <item android:id="@+id/profile"
+        android:icon="@drawable/ic_user"
+        android:title="Profile"/>
+<!--    <item android:id="@+id/sports"-->
+<!--        android:icon="@drawable/ic_dumbbell"-->
+<!--        android:title="Prepps Sports"/>-->
+    <item android:id="@+id/collegeSearch"
+        android:icon="@drawable/ic_search1"
+        android:title="My College Search"/>
+    <item android:id="@+id/career"
+        android:icon="@drawable/ic_career"
+        android:title="My Career Search"/>
+    <item android:id="@+id/financial"
+        android:icon="@drawable/ic_aid"
+        android:title="Financial Aid Center"/>
+<!--    <item android:id="@+id/aboutus"-->
+<!--        android:icon="@drawable/ic_information"-->
+<!--        android:title="About Us"/>-->
+<!--    <item android:id="@+id/logout"-->
+<!--        android:icon="@drawable/ic_logout"-->
+<!--        android:title="Log Out"/>-->
+
+</menu>

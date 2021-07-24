@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow_white_back"
+    android:layout_marginBottom="4dp"
+    android:paddingTop="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="18dp"
+    android:paddingLeft="15dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/default_user_image"
+            android:id="@+id/profilePic"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Student Name"
+                    android:textSize="17sp"
+                    android:id="@+id/studentName"
+                    android:textColor="@color/colorBlue"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BS Information Technology"
+                android:layout_marginTop="4dp"
+                android:textSize="13sp"
+                android:id="@+id/highSchool"
+                android:textColor="@color/colorDarkGrey"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_height="wrap_content"
+                android:text="Lahore District, Punjab, Pakistan"
+                android:textSize="13sp"
+                android:id="@+id/address"
+                android:textColor="@color/colorLightGrey"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_remove_user"
+            android:visibility="gone"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:tint="@color/colorRed"
+            android:id="@+id/btnRemove"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_chat"
+        android:layout_gravity="center_vertical"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:padding="4dp"
+        android:tint="@color/colorBlue"
+        android:id="@+id/btnChat"/>
+
+</LinearLayout>

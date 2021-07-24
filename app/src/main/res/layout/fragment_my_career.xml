@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.students.MyCareerFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:id="@+id/searchView"
+            android:background="@drawable/edittext_background"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:id="@+id/v"
+            android:background="@color/colorDarkGrey"
+            android:layout_below="@id/searchView"
+            android:layout_marginTop="15dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/v"
+            tools:listitem="@layout/jobs_items"
+            android:layout_marginBottom="6dp"
+            android:layout_above="@id/btnCareerTest"
+            android:id="@+id/recyceler_jobs"
+            android:layout_marginTop="15dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/btnCareerTest"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
+            android:layout_alignParentBottom="true"
+            android:text="Take Career Test"/>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

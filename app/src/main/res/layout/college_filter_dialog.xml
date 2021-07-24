@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingBottom="10dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search College"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvHeading"
+            android:textColor="@color/colorBlue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State (Optional)"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorDarkGrey"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="3dp"
+            android:hint="State"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="14sp"
+            android:id="@+id/etState"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="12sp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/colorDarkGrey"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="3dp"
+            android:hint="Name"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="14sp"
+            android:id="@+id/etName"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tuition Fees"
+            android:textSize="12sp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/colorDarkGrey"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="3dp"
+            android:hint="Tuition Fees"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="14sp"
+            android:id="@+id/etTuitionFees"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Population"
+            android:textSize="12sp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/colorDarkGrey"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="3dp"
+            android:hint="Population"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="14sp"
+            android:id="@+id/etPopulation"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Program"
+            android:textSize="12sp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/colorDarkGrey"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="3dp"
+            android:hint="Name"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="14sp"
+            android:id="@+id/etProgramsOffered"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/button_background"
+            android:text="Done"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:id="@+id/btnDone"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_cancel"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="13dp"
+        android:padding="3dp"
+        android:tint="@color/colorBlue"
+        android:id="@+id/btnCancel"/>
+
+</RelativeLayout>

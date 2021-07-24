@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Prepps</string>
+    <string name="Open">open</string>
+    <string name="Close">close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="scholarship_link">Once completed, email
+<a href="https://www.Scholarship@prepps.com">Get it here</a> with your name and date of entry. That’s it.
+</string>
+
+    <string name="about_us_desc">Prepps is an education-focused social network dedicated to assisting high school students with finding the right college or university for their specific interests. By creating an online profile with Prepps, a student that is considering college is empowered with a platform that becomes visible to a wider range of higher education institutions. Prepps provides the opportunity connect to colleges that a student may otherwise never experience.
+Prepps has a mission of improving the rate of success for college students and graduates. We aim to combat rising student loan defaults by providing high school students with tools to make more informed decisions about their future. Users within the Prepps community gain: awareness in student debt, access to college performance data, and important information on careers in order to better select their path toward success.
+</string>
+</resources>

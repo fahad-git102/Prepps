@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.colleges.SupportFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="19sp"
+            android:textColor="@color/colorDarkGrey"
+            android:text="Having any Problem ?\nContact us"
+            android:gravity="center"
+            android:id="@+id/text"/>
+
+        <EditText
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="220dp"
+            android:layout_margin="20dp"
+            android:layout_below="@id/text"
+            android:hint="Type here..."
+            android:textColor="@color/colorLightGrey"
+            android:textSize="15sp"
+            android:padding="13dp"
+            android:gravity="start"
+            android:id="@+id/etText"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/etText"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Send Email"
+            android:id="@+id/btnSendEmail"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

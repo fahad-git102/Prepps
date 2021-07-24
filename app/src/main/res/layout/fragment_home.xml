@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.students.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:background="@color/colorSilver"
+            android:id="@+id/linear_boxes"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Invite a friend"
+                android:padding="10dp"
+                android:textColor="@color/colorBlue"
+                android:gravity="center"
+                android:id="@+id/tvRefer"/>
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:background="@color/colorDarkGrey"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enter to win Prepps Scholarship"
+                android:padding="10dp"
+                android:textColor="@color/colorBlue"
+                android:gravity="center"
+                android:id="@+id/tvPreppsScholarShip"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_boxes"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            tools:listitem="@layout/articles_new_layout"
+            android:id="@+id/recyceler_articles"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_boxes"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/progressBar"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            tools:listitem="@layout/timeline_items"
+            android:layout_below="@id/recyceler_articles"
+            android:id="@+id/recyclerTimeline"/>
+
+    </RelativeLayout>
+
+</FrameLayout>

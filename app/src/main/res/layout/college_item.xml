@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="17sp"
+    android:background="@color/colorSilverLight"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="15dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="College Name"
+        android:id="@+id/collegeName"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlue"
+        android:gravity="center"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:src="@drawable/default_thumbnail"
+        android:scaleType="centerCrop"
+        android:layout_below="@id/collegeName"
+        android:layout_marginTop="13dp"
+        android:id="@+id/image"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This will be the college description. This will be the college description. This will be the college description. This will be the college description. This will be the college description"
+        android:layout_below="@id/image"
+        android:layout_marginTop="7dp"
+        android:id="@+id/description"
+        android:textColor="@color/colorDarkGrey"
+        android:textSize="15sp"/>
+
+</RelativeLayout>
