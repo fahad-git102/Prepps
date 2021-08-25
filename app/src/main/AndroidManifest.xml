@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Prepps">
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.FavouriteCollegesActivity"></activity>
+        <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.InboxActivity" />
         <activity android:name=".activities.student.ProgramsCollegeActivity" />
         <activity android:name=".activities.student.CollegeDetailActivity" />
@@ -43,6 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.fahaddev.android.fileprovider"

@@ -23,6 +23,7 @@ import com.chootdev.recycleclick.RecycleClick;
 import com.fahaddev.prepps.APICall.ResponseCollegeNavigator;
 import com.fahaddev.prepps.APICall.RetrofitApiClient;
 import com.fahaddev.prepps.R;
+import com.fahaddev.prepps.activities.FavouriteCollegesActivity;
 import com.fahaddev.prepps.activities.college.CollegeHomeActivity;
 import com.fahaddev.prepps.activities.student.CollegeDetailActivity;
 import com.fahaddev.prepps.adapters.CollegeAdapter;
@@ -65,6 +66,7 @@ public class MyCollegeFragment extends Fragment implements View.OnClickListener{
     ProgressBar progress;
     int minFees= 10;
     int maxFees = 100000;
+    ImageButton btnFavouriteList;
     int minPopulation=0;
     int maxPopulation = 10000;
     String name, state, program;
@@ -115,6 +117,8 @@ public class MyCollegeFragment extends Fragment implements View.OnClickListener{
         etSearchCollege.setFocusableInTouchMode(false);
         etSearchCollege.setFocusable(false);
         etSearchCollege.setOnClickListener(this);
+        btnFavouriteList = view.findViewById(R.id.btnFavourites);
+        btnFavouriteList.setOnClickListener(this);
         collegeNavigatorModels= new ArrayList<>();
         recyclerColleges.setLayoutManager(new LinearLayoutManager(getActivity()));
         allProgramsList = new ArrayList<>();
@@ -163,7 +167,9 @@ public class MyCollegeFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if (view.getId()==R.id.searchView){
+        if (view.getId()==R.id.btnFavourites){
+            startActivity(new Intent(getActivity(), FavouriteCollegesActivity.class));
+        }else if (view.getId()==R.id.searchView){
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             View view1 = LayoutInflater.from(getActivity()).inflate(R.layout.college_filter_dialog, null);
             EditText etState = view1.findViewById(R.id.etState);

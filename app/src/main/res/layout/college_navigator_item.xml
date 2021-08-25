@@ -97,15 +97,17 @@
             </LinearLayout>
 
         </LinearLayout>
-
+sta
     </LinearLayout>
 
-    <ImageView
+    <ImageButton
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:padding="3dp"
-        android:rotation="180"
-        android:src="@drawable/ic_back"
+        android:id="@+id/btnStar"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_favourite"
         android:tint="@color/colorLightGrey" />
 
 </LinearLayout>

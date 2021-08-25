@@ -1,6 +1,7 @@
 package com.fahaddev.prepps.APICall;
 
 import com.fahaddev.prepps.APICall.APIModels.CollegeSignUpInformation;
+import com.fahaddev.prepps.APICall.APIModels.FavouriteCollegeResponse;
 import com.fahaddev.prepps.APICall.APIModels.LoginInformation;
 import com.fahaddev.prepps.APICall.APIModels.ResponseAllUsers;
 import com.fahaddev.prepps.APICall.APIModels.ResponseCheckSuccess;
@@ -104,4 +105,7 @@ public interface APIMethodInterface {
     @Multipart
     @POST("profile/update-cover")
     Call<ResponseUploadCover> uploadCover(@Part MultipartBody.Part file, @Part MultipartBody.Part token);
+
+    @POST("college-fav")
+    Call<FavouriteCollegeResponse> getFavouriteColleges(@Query("token") String token);
 }
