@@ -1,5 +1,6 @@
 package com.fahaddev.prepps.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -28,6 +29,10 @@ import com.fahaddev.prepps.activities.student.StudentsHomeActivity;
 import com.fahaddev.prepps.APICall.APIModels.LoginInformation;
 import com.fahaddev.prepps.helpers.StaticClass;
 import com.fahaddev.prepps.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     AppCompatButton btnLogin, btnSignUp;
     EditText etEmail, etPassword;
     TextView tvForgotPass;
+    FirebaseAuth mAuth;
     Call<ResponseLoginFile> responseLoginCall;
 
     @Override
@@ -64,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         tvForgotPass = findViewById(R.id.tvForgotPass);
+        mAuth = FirebaseAuth.getInstance();
         tvForgotPass.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
@@ -162,25 +169,70 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.isSuccessful()){
                     progressDialog.dismiss();
                     if (response.body().getMessage().equals("success")){
+                        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()){
+                                                if (response.body().getDataObject()!=null){
+                                                    currentUser = response.body().getDataObject().getUser();
+                                                    currentUser.setToken(response.body().getDataObject().getToken());
 
-                        if (response.body().getDataObject()!=null){
-                            currentUser = response.body().getDataObject().getUser();
-                            currentUser.setToken(response.body().getDataObject().getToken());
-                            
-                            if (currentUser.getType().equals("school")){
-                                startActivity(new Intent(LoginActivity.this, StudentsHomeActivity.class));
-                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                                finish();
-                            }else {
-                                startActivity(new Intent(LoginActivity.this, CollegeHomeActivity.class));
-                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                                finish();
+                                                    if (currentUser.getType().equals("school")){
+                                                        startActivity(new Intent(LoginActivity.this, StudentsHomeActivity.class));
+                                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                        finish();
+                                                    }else {
+                                                        startActivity(new Intent(LoginActivity.this, CollegeHomeActivity.class));
+                                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                        finish();
+                                                    }
+                                                }else {
+                                                    startActivity(new Intent(LoginActivity.this, StudentsHomeActivity.class));
+                                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                    finish();
+                                                }
+                                            }else {
+                                                Toast.makeText(LoginActivity.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }else {
+
+                                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()){
+                                                if (response.body().getDataObject()!=null){
+                                                    currentUser = response.body().getDataObject().getUser();
+                                                    currentUser.setToken(response.body().getDataObject().getToken());
+
+                                                    if (currentUser.getType().equals("school")){
+                                                        startActivity(new Intent(LoginActivity.this, StudentsHomeActivity.class));
+                                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                        finish();
+                                                    }else {
+                                                        startActivity(new Intent(LoginActivity.this, CollegeHomeActivity.class));
+                                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                        finish();
+                                                    }
+                                                }else {
+                                                    startActivity(new Intent(LoginActivity.this, StudentsHomeActivity.class));
+                                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                                    finish();
+                                                }
+                                            }else {
+                                                Toast.makeText(LoginActivity.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+                                }
                             }
-                        }else {
-                            startActivity(new Intent(LoginActivity.this, StudentsHomeActivity.class));
-                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                            finish();
-                        }
+                        });
 
                     }else {
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);

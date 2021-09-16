@@ -9,6 +9,7 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 
 import com.fahaddev.prepps.models.User;
+import com.fahaddev.prepps.models.UserTokenModel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -21,6 +22,7 @@ import java.util.Date;
 public class StaticClass {
     public static final String BASE_URL = "https://prepps.com/public/api/";
     public static User currentUser;
+    public static UserTokenModel currentUserToken;
 
     public static String getFormattedDate(String date, String input, String output){
         try{

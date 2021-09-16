@@ -2,10 +2,19 @@ package com.fahaddev.prepps.helpers;
 
 import android.app.Application;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.fahaddev.prepps.APICall.APIModels.FavouriteCollegeResponse;
 import com.fahaddev.prepps.APICall.RetrofitApiClient;
 import com.fahaddev.prepps.models.CollegeNavigatorModel;
 import com.fahaddev.prepps.models.User;
+import com.fahaddev.prepps.models.UserTokenModel;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +34,7 @@ public class Prepps extends Application {
         super.onCreate();
         allUsersList = new ArrayList<>();
         statesList = new ArrayList<>();
+        getCurrentFirebaseTokens();
         statesList.add("Alabama");
         statesList.add("Alaska");
         statesList.add("Arizona");
@@ -96,6 +106,52 @@ public class Prepps extends Application {
                 }
             });
         }
+    }
+
+    private void getCurrentFirebaseTokens(){
+        DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("tokens");
+        tokensRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try{
+                    UserTokenModel userTokenModel = snapshot.getValue(UserTokenModel.class);
+                    userTokenModel.setKey(snapshot.getKey());
+                    if (StaticClass.currentUser!=null){
+                        if (userTokenModel.getUid().equals(String.valueOf(StaticClass.currentUser.getId()))){
+                            StaticClass.currentUserToken = userTokenModel;
+                        }
+                    }
+                }catch (Exception e){}
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                try{
+                    UserTokenModel userTokenModel = snapshot.getValue(UserTokenModel.class);
+                    userTokenModel.setKey(snapshot.getKey());
+                    if (StaticClass.currentUser!=null){
+                        if (userTokenModel.getUid().equals(StaticClass.currentUser.getId())){
+                            StaticClass.currentUserToken = userTokenModel;
+                        }
+                    }
+                }catch (Exception e){}
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

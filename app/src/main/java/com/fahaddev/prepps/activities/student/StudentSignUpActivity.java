@@ -1,5 +1,6 @@
 package com.fahaddev.prepps.activities.student;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,6 +31,10 @@ import com.fahaddev.prepps.adapters.SportsSelectAdapter;
 import com.fahaddev.prepps.helpers.StaticClass;
 import com.fahaddev.prepps.models.User;
 import com.fahaddev.prepps.models.User_detail;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +46,7 @@ import retrofit2.Response;
 public class StudentSignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView btnNext, btnSave, tvType, btnSkip;
+    FirebaseAuth mAuth;
     LinearLayout required, optional;
     ImageButton goBack;
     boolean optionalPage = false;
@@ -56,6 +62,7 @@ public class StudentSignUpActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_sign_up);
+        mAuth = FirebaseAuth.getInstance();
         btnNext = findViewById(R.id.btnNext);
         btnSave = findViewById(R.id.btnSave);
         btnSkip = findViewById(R.id.btnSkip);
@@ -202,28 +209,38 @@ public class StudentSignUpActivity extends AppCompatActivity implements View.OnC
                 SignUpInformation signUpInformation = new SignUpInformation(name, email, password, "school", city, city,
                         highSchool, height, weight, "", gpa, clubs, activity, careers);
 
-                responseSignUpFileCall = RetrofitApiClient.createRetrofitApi(StaticClass.BASE_URL).signUp(signUpInformation);
-                responseSignUpFileCall.enqueue(new Callback<ResponseSignUpFile>() {
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onResponse(Call<ResponseSignUpFile> call, Response<ResponseSignUpFile> response) {
-                        progress.setVisibility(View.GONE);
-                        if (response.isSuccessful()){
-                            if (response.body().getMessage().equals("success")){
-                                Toast.makeText(StudentSignUpActivity.this, "Registered Successfully !", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(StudentSignUpActivity.this, LoginActivity.class));
-                                finish();
-                            }else {
-                                Toast.makeText(StudentSignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }else {
-                            Toast.makeText(StudentSignUpActivity.this, "Network Failure.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            responseSignUpFileCall = RetrofitApiClient.createRetrofitApi(StaticClass.BASE_URL).signUp(signUpInformation);
+                            responseSignUpFileCall.enqueue(new Callback<ResponseSignUpFile>() {
+                                @Override
+                                public void onResponse(Call<ResponseSignUpFile> call, Response<ResponseSignUpFile> response) {
+                                    progress.setVisibility(View.GONE);
+                                    if (response.isSuccessful()){
+                                        if (response.body().getMessage().equals("success")){
+                                            Toast.makeText(StudentSignUpActivity.this, "Registered Successfully !", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(StudentSignUpActivity.this, LoginActivity.class));
+                                            finish();
+                                        }else {
+                                            Toast.makeText(StudentSignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }else {
+                                        Toast.makeText(StudentSignUpActivity.this, "Network Failure.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
 
-                    @Override
-                    public void onFailure(Call<ResponseSignUpFile> call, Throwable t) {
-                        progress.setVisibility(View.GONE);
-                        Toast.makeText(StudentSignUpActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                @Override
+                                public void onFailure(Call<ResponseSignUpFile> call, Throwable t) {
+                                    progress.setVisibility(View.GONE);
+                                    Toast.makeText(StudentSignUpActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else {
+                            progress.setVisibility(View.GONE);
+                            Toast.makeText(StudentSignUpActivity.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 break;

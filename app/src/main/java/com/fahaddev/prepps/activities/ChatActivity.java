@@ -1,5 +1,6 @@
 package com.fahaddev.prepps.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,9 +24,22 @@ import com.fahaddev.prepps.adapters.ChatAdapter;
 import com.fahaddev.prepps.helpers.StaticClass;
 import com.fahaddev.prepps.models.InboxModel;
 import com.fahaddev.prepps.models.MessageModel;
+import com.fahaddev.prepps.models.UserTokenModel;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.functions.HttpsCallableResult;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +52,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     ChatAdapter adapter;
     ImageButton goBack, btnSend;
     InboxModel inbox;
+    FirebaseFunctions mFunctions;
     EditText etTypeHere;
 
     @Override
@@ -48,6 +63,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         goBack = findViewById(R.id.goBack);
         goBack.setOnClickListener(this);
         btnSend = findViewById(R.id.btnSend);
+        mFunctions = FirebaseFunctions.getInstance();
         btnSend.setOnClickListener(this);
         messageModelList = new ArrayList<>();
         etTypeHere = findViewById(R.id.etTypeHere);
@@ -122,6 +138,30 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 if (response.isSuccessful()){
                     etTypeHere.setText("");
                     getChat(id);
+
+                    DatabaseReference tokensRef = FirebaseDatabase.getInstance().getReference("tokens");
+                    tokensRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            try {
+                                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                    UserTokenModel userTokenModel = dataSnapshot.getValue(UserTokenModel.class);
+                                    userTokenModel.setKey(dataSnapshot.getKey());
+                                    if (userTokenModel.getUid().equals(String.valueOf(id))){
+                                        sendNotification(userTokenModel.getDeviceTokens());
+                                    }
+                                }
+
+                            }catch (Exception e){
+                                Toast.makeText(ChatActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Toast.makeText(ChatActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
 
@@ -130,6 +170,33 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(ChatActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private Task<String> cloudNotification(Map<String, Object> data) {
+
+        return mFunctions
+                .getHttpsCallable("sendNotification")
+                .call(data)
+                .continueWith(new Continuation<HttpsCallableResult, String>() {
+                    @Override
+                    public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        String result = (String) task.getResult().getData();
+                        return result;
+                    }
+                });
+    }
+
+    private void sendNotification(List<String> stringList){
+        Map<String, Object> map = new HashMap<>();
+        String title = "Message Received";
+        String message = StaticClass.currentUser.getUser_detail().getName()+" sent you a message";
+        map.put("title", title);
+        map.put("message", message);
+        List<String> list = new ArrayList<>();
+        list.add("fLPjaMxNvcw:APA91bE8zeTkEt8qHYjNe-nqEtlbjAOLb8hJDbdqghWbOOiwuAdcQNtHeyvIStWP95Fw0J_dANri8sp1m6DjxJgH204ummXYasKFdD8MvRvmMvGvwlabodQ4Ujr0M96_A83Z2N4DVAp3");
+        map.put("deviceToken", stringList);
+
+        cloudNotification(map);
     }
 
 }

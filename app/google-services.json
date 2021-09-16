@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "381598845423",
+    "project_id": "prepps-d692a",
+    "storage_bucket": "prepps-d692a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381598845423:android:a122dda146d346be7a0e1a",
+        "android_client_info": {
+          "package_name": "com.fahaddev.prepps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381598845423-2e2og1f7kukkb9277p2rk022pmvcevba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD27CLKDFzkBKPlbXoNNhP3Kq7z7iNgbd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381598845423-2e2og1f7kukkb9277p2rk022pmvcevba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

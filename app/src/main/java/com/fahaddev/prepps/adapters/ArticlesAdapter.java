@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.fahaddev.prepps.R;
 import com.fahaddev.prepps.models.ArticlesModel;
 import com.squareup.picasso.Picasso;
@@ -40,7 +41,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
     @Override
     public void onBindViewHolder(@NonNull ArticlesVHolder holder, int position) {
         holder.tvTitle.setText(list.get(position).getTitle());
-        Picasso.with(context).load(list.get(position).getImage()).placeholder(R.drawable.default_thumbnail).fit().into(holder.imgBack);
+        Glide.with(context).load(list.get(position).getImage()).placeholder(R.drawable.default_thumbnail).into(holder.imgBack);
     }
 
     @Override

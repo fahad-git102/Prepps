@@ -1,5 +1,6 @@
 package com.fahaddev.prepps.activities.college;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -20,6 +21,10 @@ import com.fahaddev.prepps.R;
 import com.fahaddev.prepps.activities.student.StudentSignUpActivity;
 import com.fahaddev.prepps.activities.student.StudentsHomeActivity;
 import com.fahaddev.prepps.helpers.StaticClass;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
 
@@ -32,6 +37,7 @@ public class CollegeSignUpActivity extends AppCompatActivity implements View.OnC
     TextView btnNext, btnSave, tvType, btnSkip;
     LinearLayout required, optional;
     ImageButton goBack;
+    FirebaseAuth mAuth;
     String name , email, password, aboutUs, location;
     EditText etName, etEmail, etPassword, etLocation, etAboutUs, etAwards, etAccreditation, etRanking;
     boolean optionalPage = false;
@@ -40,6 +46,7 @@ public class CollegeSignUpActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_college_sign_up);
+        mAuth = FirebaseAuth.getInstance();
         btnNext = findViewById(R.id.btnNext);
         btnSave = findViewById(R.id.btnSave);
         btnSkip = findViewById(R.id.btnSkip);
@@ -134,28 +141,39 @@ public class CollegeSignUpActivity extends AppCompatActivity implements View.OnC
         collegeSignUpInformation.setCollege_address(location);
         collegeSignUpInformation.setType("college");
 
-        Call<ResponseCollegeSignUpInfo> responseCollegeSignUpInfoCall = RetrofitApiClient.createRetrofitApi(StaticClass.BASE_URL).signUpCollege(collegeSignUpInformation);
-        responseCollegeSignUpInfoCall.enqueue(new Callback<ResponseCollegeSignUpInfo>() {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onResponse(Call<ResponseCollegeSignUpInfo> call, Response<ResponseCollegeSignUpInfo> response) {
-                progressDialog.dismiss();
-                if (response.isSuccessful()){
-                    if (response.body().getMessage().equals("success")){
-//                                User_detail user_detail = response.body().getDataObject().getUser_detailObject();
-                        startActivity(new Intent(CollegeSignUpActivity.this, CollegeHomeActivity.class));
-                        finish();
-                    }else {
-                        Toast.makeText(CollegeSignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    Toast.makeText(CollegeSignUpActivity.this, "Network Failure.", Toast.LENGTH_SHORT).show();
-                }
-            }
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
 
-            @Override
-            public void onFailure(Call<ResponseCollegeSignUpInfo> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(CollegeSignUpActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Call<ResponseCollegeSignUpInfo> responseCollegeSignUpInfoCall = RetrofitApiClient.createRetrofitApi(StaticClass.BASE_URL).signUpCollege(collegeSignUpInformation);
+                    responseCollegeSignUpInfoCall.enqueue(new Callback<ResponseCollegeSignUpInfo>() {
+                        @Override
+                        public void onResponse(Call<ResponseCollegeSignUpInfo> call, Response<ResponseCollegeSignUpInfo> response) {
+                            progressDialog.dismiss();
+                            if (response.isSuccessful()){
+                                if (response.body().getMessage().equals("success")){
+//                                User_detail user_detail = response.body().getDataObject().getUser_detailObject();
+                                    startActivity(new Intent(CollegeSignUpActivity.this, CollegeHomeActivity.class));
+                                    finish();
+                                }else {
+                                    Toast.makeText(CollegeSignUpActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }else {
+                                Toast.makeText(CollegeSignUpActivity.this, "Network Failure.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseCollegeSignUpInfo> call, Throwable t) {
+                            progressDialog.dismiss();
+                            Toast.makeText(CollegeSignUpActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else {
+                    progressDialog.dismiss();
+                    Toast.makeText(CollegeSignUpActivity.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
