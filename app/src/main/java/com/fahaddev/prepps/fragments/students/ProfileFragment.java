@@ -201,7 +201,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                             tvAwards.setText(user_detail.getAward());
                         }
                         if (user.getCover()!=null){
-                            Picasso.with(getActivity()).load(user.getCover()).placeholder(R.drawable.sample2).fit().into(coverPic);
+                            Glide.with(getActivity()).load(user.getCover()).placeholder(R.drawable.sample2).override(180,180).into(coverPic);
+//                            Picasso.with(getActivity()).load(user.getCover()).placeholder(R.drawable.sample2).fit().into(coverPic);
                         }
                         if (user_detail.getHeight()!=null){
                             linearHeight.setVisibility(View.VISIBLE);
